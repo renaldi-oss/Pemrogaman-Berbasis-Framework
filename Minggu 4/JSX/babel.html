@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        table,td,th {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- REACT CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- BABEL CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.21.2/babel.js" 
+    integrity="sha512-H4d7o4neCJ2oxn87hZ28u2Xe+cMjt09Tb9TL9d4IckR0cda69w7sJpdkh6+oJveViuueEBlBxevEtpw3++Cz7w==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script type="text/babel">
+        fetch('content.json')
+            .then(response => response.json())
+            .then(data =>{
+                const Tabel = ({ data }) => {
+                    const headers = Object.keys(data.posts[0]);
+                    const rows = data.posts.map((post) => Object.values(post));
+                        return (
+                            <table>
+                                <thead>
+                                    <tr>
+                                    {headers.map((header) => (
+                                        <th key={header}>{header}</th>
+                                    ))}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {rows.map((row, index) => (
+                                    <tr key={index}>
+                                        {row.map((cell, index) => (
+                                        <td key={index}>{cell}</td>
+                                        ))}
+                                    </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        );
+                };
+                ReactDOM.createRoot(document.getElementById('root')).render(<Tabel data={data} />);
+            });
+    </script>
+
+
+    <!-- <script type="text/babel">
+        // data mhs
+        const mahasiswas = [
+            { nama:'Eka', umur:19, jurusan:'Teknik Informatika'},
+            { nama:'Lisa', umur:18, jurusan:'Sistem Infromasi' },
+            { nama:'Rudi', umur:19, jurusan:'Teknik Elektro' }
+        ];
+        
+        const Tabel = ({ data }) => (
+            <table>
+                {console.log(data)} 
+                <thead>
+                    <tr>
+                        {Object.keys(data[0]).map((head) => (
+                        <th key={head}>{head}</th>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.map((item, index) => (
+                        <tr key={index}>
+                            {console.log(item,index)}
+                            {Object.values(item)
+                                .map((currData,index) => (
+                                    <td key={index}>{currData}</td>
+                                ))}
+                        </tr>
+                    ))}
+                    
+                </tbody>
+            </table>
+        );
+       
+        ReactDOM.createRoot(document.getElementById('root')).render(<Tabel data={mahasiswas} />); -->
+        
+        
+    </script>
+    <script>
+         // const Tabel2 = ({data}) => {
+        //     const head = Object.keys(data[0]);
+        //     const items = data.map((data) => Object.values(data));
+        //     console.log(data);
+        //     console.log(items);
+        //     return (
+        //         <table>
+        //             <thead>
+        //                 <tr>
+        //                     {
+        //                         head.map((head) => (
+        //                             <th key={head}>{head}</th>
+        //                         ))
+        //                     }
+        //                 </tr>
+        //             </thead>
+        //             <tbody>
+        //                 {
+        //                     items.map((item,index) => (
+        //                         <tr key={index}>
+        //                             {item.map((currItem,index) =>(
+        //                                 <td key={index}>{currItem}</td>
+        //                             ))}
+        //                         </tr>
+        //                     ))
+        //                 }    
+        //             </tbody>    
+        //         </table>
+        //     );
+        // }
+    </script>
+</body>
+</html>
+<!-- 
+    1
+    <script type="text/babel">
+        const myElement = <h1 id="judul">Hello react</h1>;
+        console.log(myElement);
+
+        ReactDOM.createRoot(document.getElementById('root')).render(myElement);
+    </script> 
+    
+    2
+    <script type="text/babel">
+        const myElement = (
+            <ul>
+                <li><a href="https://id.wikipedia.org/wiki/Espresoa">Espressoa</a></li>
+                <li><a href="https://id.wikipedia.org/wiki/Kapucinoa">Cappuccino</a></li>
+                <li><a href="https://id.wikipedia.org/wiki/Mokaa">Moccacino</a></li>
+            </ul>
+        );
+        ReactDOM.createRoot(document.getElementById('root')).render(myElement);
+    </script>
+
+    3
+    <script type="text/babel">
+        const myElement = (
+            <div>
+                <label htmlFor="username">Username : </label>
+                <input type="text" name="username" id="username"/>    
+            </div>
+        );                                                 
+        ReactDOM.createRoot(document.getElementById('root')).render(myElement);
+    </script>
+
+    4
+    <script type="text/babel">
+        let myText = "Belajar React";
+
+        const myElement = (
+            <div>
+                <h1>{myText}</h1>
+                <p>10 + 5 = {10 + 5}</p>
+                <span title="{myText}">React Uncover</span>
+            </div>
+        );
+        ReactDOM.createRoot(document.getElementById('root')).render(myElement);
+    </script>
+
+    5
+    <script type="text/babel">
+        let nilai = 80;
+        let pesan;
+        
+        if(nilai > 70){
+            pesan = "Selamat, anda lolos";
+        }else{
+            pesan = "Maaf, silahkan coba lagi";
+        }
+        const myElement = <h1>{pesan}</h1>
+        
+        ReactDOM.createRoot(document.getElementById('root')).render(myElement);
+    </script>
+
+    6
+    <script type="text/babel">
+        let nilai = 80;
+        
+        const myElement = <h1>{(nilai > 70) ? "Selamat anda lolos" : "Maaf, silahkan coba lagi"}</h1>
+
+        ReactDOM.createRoot(document.getElementById('root')).render(myElement);
+    </script>
+
+    7
+    <script type="text/babel">
+        let nilai = 60;
+        
+        const myElement = (nilai>70) && <h1>Selamat, anda lolos</h1>
+
+        ReactDOM.createRoot(document.getElementById('root')).render(myElement);
+    </script>
+
+    8
+    <script type="text/babel">
+        
+        let kopis = ['Espresso','Cappuccino','Moccacino'];
+        const myElement = (
+            <ul>
+                {kopis.map((kopi,i) => <li key={i}>{kopi}</li>)}
+            </ul>
+        );
+
+        ReactDOM.createRoot(document.getElementById('root')).render(myElement);
+    </script>
+
+    9
+    <script type="text/babel">
+        
+        let kopis = ['Espresso','Cappuccino','Moccacino'];
+        const myElement = (
+            <ul>
+                {kopis.map(kopi => <li key={kopi}>{kopi}</li>)}
+            </ul>
+        );
+
+        ReactDOM.createRoot(document.getElementById('root')).render(myElement);
+    </script>
+
+    10
+
+    11 -----------------------------
+    <script type="text/babel">
+        fetch('content.json')
+            .then(response => response.json())
+            .then(data =>{
+                const Tabel = ({ data }) => {
+                    const headers = Object.keys(data.posts[0]);
+                    const rows = data.posts.map((post) => Object.values(post));
+                        return (
+                            <table>
+                                <thead>
+                                    <tr>
+                                    {headers.map((header) => (
+                                        <th key={header}>{header}</th>
+                                    ))}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {rows.map((row, index) => (
+                                    <tr key={index}>
+                                        {row.map((cell, index) => (
+                                        <td key={index}>{cell}</td>
+                                        ))}
+                                    </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        );
+                };
+                ReactDOM.createRoot(document.getElementById('root')).render(<Tabel data={data} />);
+            });
+    </script>
+ <script type="text/babel">
+        // data mhs
+        const mahasiswas = [
+            { nama:'Eka', umur:19, jurusan:'Teknik Informatika'},
+            { nama:'Lisa', umur:18, jurusan:'Sistem Infromasi' },
+            { nama:'Rudi', umur:19, jurusan:'Teknik Elektro' }
+        ];
+        
+        const Tabel = ({ data }) => (
+            <table>
+                {console.log(data)} 
+                <thead>
+                    <tr>
+                        {Object.keys(data[0]).map((head) => (
+                        <th key={head}>{head}</th>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.map((item, index) => (
+                        <tr key={index}>
+                            {console.log(item,index)}
+                            {Object.values(item)
+                                .map((currData,index) => (
+                                    <td key={index}>{currData}</td>
+                                ))}
+                        </tr>
+                    ))}
+                    
+                </tbody>
+            </table>
+        );
+        // const Tabel2 = ({data}) => {
+        //     const head = Object.keys(data[0]);
+        //     const items = data.map((data) => Object.values(data));
+        //     console.log(data);
+        //     console.log(items);
+        //     return (
+        //         <table>
+        //             <thead>
+        //                 <tr>
+        //                     {
+        //                         head.map((head) => (
+        //                             <th key={head}>{head}</th>
+        //                         ))
+        //                     }
+        //                 </tr>
+        //             </thead>
+        //             <tbody>
+        //                 {
+        //                     items.map((item,index) => (
+        //                         <tr key={index}>
+        //                             {item.map((currItem,index) =>(
+        //                                 <td key={index}>{currItem}</td>
+        //                             ))}
+        //                         </tr>
+        //                     ))
+        //                 }    
+        //             </tbody>    
+        //         </table>
+        //     );
+        // }
+      
+        ReactDOM.createRoot(document.getElementById('root')).render(<Tabel data={mahasiswas} />);
+
+    </script>
+
+-->

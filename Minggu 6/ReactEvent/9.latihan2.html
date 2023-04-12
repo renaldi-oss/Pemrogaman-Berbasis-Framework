@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Uncover</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- REACT CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- BABEL CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.21.2/babel.js" 
+    integrity="sha512-H4d7o4neCJ2oxn87hZ28u2Xe+cMjt09Tb9TL9d4IckR0cda69w7sJpdkh6+oJveViuueEBlBxevEtpw3++Cz7w==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script type="text/babel">
+        function Tombol(props) {
+            return (
+                <button onClick={props.onTombolClick}>Click Me</button>
+            );
+        }
+
+        function MyApp() {
+            const handleClick = () => {
+                alert("Alert dari MyApp");
+            };
+            return (
+                <div>
+                <h1>Belajar React</h1>
+                <Tombol onTombolClick={handleClick} />
+                </div>
+            );
+        }
+        ReactDOM.createRoot(document.getElementById('root')).render(<MyApp/>);
+    </script>
+</body>
+</html>

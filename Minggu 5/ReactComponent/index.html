@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Uncover</title>
+    
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- REACT CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- BABEL CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.21.2/babel.js" 
+    integrity="sha512-H4d7o4neCJ2oxn87hZ28u2Xe+cMjt09Tb9TL9d4IckR0cda69w7sJpdkh6+oJveViuueEBlBxevEtpw3++Cz7w==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script type="text/babel">
+        const mahasiswas = [
+            {
+                id : "01",
+                nama : "Eka",
+                jurusan : "Teknik Informatika",
+                pasFoto : "h1.png"
+            },
+            {
+                id : "02",
+                nama : "Lisa",
+                jurusan : "Sistem Informasi",
+                pasFoto : "h2.png"
+            },
+            {
+                id : "03",
+                nama : "Rudi",
+                jurusan : "Teknik Elektro",
+                pasFoto : "h3.png"
+            }
+        ]
+        class Mahasiswa extends React.Component{
+            render(){
+                const mahasiswa = this.props.mahasiswa;
+                return(
+                    <figure>
+                        <img src={"./img/"+mahasiswa.pasFoto} alt={mahasiswa.nama} style={{maxHeight:"200px",maxWidth:"200px"}}/>
+                        <figcaption>{mahasiswa.nama} ({mahasiswa.jurusan})</figcaption>    
+                    </figure>
+                )
+            }
+        }
+
+        class DaftarMahasiswa extends React.Component{
+            render(){
+                return(
+                    <React.Fragment>
+                        <h1>Daftar Mahasiswa - Polinema</h1>    
+                        <hr/>
+                        <section style={{display:"flex",textAlign:"center"}}>
+                            {
+                                mahasiswas.map( (mhs) => (
+                                    <Mahasiswa mahasiswa={mhs}  key={mhs.id}/>
+                                ))
+                            }
+                        </section>
+                    </React.Fragment>
+                    
+                )
+            }
+        }
+        ReactDOM.createRoot(document.getElementById('root')).render(<DaftarMahasiswa/>);
+    </script>
+    <!-- <script type="text/babel">
+        const mahasiswas = [
+            {
+                id : "01",
+                nama : "Eka",
+                jurusan : "Teknik Informatika",
+                pasFoto : "h1.png"
+            },
+            {
+                id : "02",
+                nama : "Lisa",
+                jurusan : "Sistem Informasi",
+                pasFoto : "h2.png"
+            },
+            {
+                id : "03",
+                nama : "Rudi",
+                jurusan : "Teknik Elektro",
+                pasFoto : "h3.png"
+            }
+        ]
+        const Mahasiswa = () => {
+                return (
+                    mahasiswas.map( (mhs) => 
+                        <figure key={mhs.id}>
+                            <img src={"./img/"+mhs.pasFoto} alt={mhs.nama} style={{maxHeight:"200px",maxWidth:"200px"}}/>
+                            <figcaption>{mhs.nama} ({mhs.jurusan})</figcaption>    
+                        </figure>
+                    )
+                ) 
+                         
+        };
+
+        const DaftarMahasiswa = () => {
+                return(
+                    <React.Fragment>
+                        <h1>Daftar Mahasiswa - Polinema</h1>    
+                        <hr/>
+                        <section style={{display:"flex",textAlign:"center"}}>
+                            <Mahasiswa/>
+                        </section>
+                    </React.Fragment>
+                    
+                )
+        }
+        ReactDOM.createRoot(document.getElementById('root')).render(<DaftarMahasiswa/>);
+    </script> -->
+    <!-- <script type="text/babel">
+        const mahasiswas = [
+            {
+                id : "01",
+                nama : "Eka",
+                jurusan : "Teknik Informatika",
+                pasFoto : "h1.png"
+            },
+            {
+                id : "02",
+                nama : "Lisa",
+                jurusan : "Sistem Informasi",
+                pasFoto : "h2.png"
+            },
+            {
+                id : "03",
+                nama : "Rudi",
+                jurusan : "Teknik Elektro",
+                pasFoto : "h3.png"
+            }
+        ]
+          
+
+        class DaftarMahasiswa extends React.Component{
+            render(){
+                return(
+                    <React.Fragment>
+                        <h1>Daftar Mahasiswa - Polinema</h1>    
+                        <hr/>
+                        <section style={{display:"flex",textAlign:"center"}}>
+                            {
+                                mahasiswas.map( (mahasiswa) => (
+                                    <figure key={mahasiswa.id}>
+                                        <img src={"./img/"+mahasiswa.pasFoto} alt={mahasiswa.nama} style={{maxHeight:"200px",maxWidth:"200px"}}/>
+                                        <figcaption>{mahasiswa.nama} ({mahasiswa.jurusan})</figcaption>    
+                                    </figure>
+                                ))
+                            }
+                        </section>
+                    </React.Fragment>
+                )
+            }
+        }
+        ReactDOM.createRoot(document.getElementById('root')).render(<DaftarMahasiswa/>);
+    </script> -->
+    <!-- 9 -->
+    <!-- <script type="text/babel">
+        const mahasiswa = {
+            id : "1",
+            nama : "Eka",
+            jurusan : "Teknik Informatika",
+            pasFoto : "h-cup.png"
+        }
+
+        class Mahasiswa extends React.Component{
+            render(){
+                return(
+                    <figure>
+                        <img src={"./img/"+mahasiswa.pasFoto} alt={mahasiswa.nama} />
+                        <figcaption>{mahasiswa.nama}({mahasiswa.jurusan})</figcaption>    
+                    </figure>
+                )
+            }
+        }
+        ReactDOM.createRoot(document.getElementById('root')).render(<Mahasiswa/>);
+    </script> -->
+    <!-- 9 -->
+    <!-- <script type="text/babel">
+        class MyComponent extends React.Component {
+            constructor(){
+                super();
+                this.judulReact = "Belajar React"
+            }
+            judulHurufKecil(){
+                return this.judulHurufKecil.toLocaleLowerCase();
+            }
+            render(){
+                return(
+                    <React.Fragment>
+                        <h1>{this.judulReact}</h1>
+                        <hr/>
+                        <p>stt... lagi kerja serius {this.judulHurufKecil()}</p>
+                    </React.Fragment>
+                )
+            }
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<MyComponent/>);
+    </script> -->
+    <!-- 8 -->
+    <!-- <script type="text/babel">
+        class MyComponent extends React.Component {
+            judulReact = "Belajar React";
+            render(){
+                return(
+                    <React.Fragment>
+                        <h1>{this.judulReact}</h1>
+                        <hr/>
+                        <p>stt... lagi kerja serius {this.judulReact.toLocaleLowerCase()}</p>
+                    </React.Fragment>
+                )
+            }
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<MyComponent/>);
+    </script> -->
+    <!-- 7 -->
+    <!-- <script type="text/babel">
+        class MyComponent extends React.Component {
+            render(){
+                let judulReact = `Belajar React`;
+                return(
+                    <React.Fragment>
+                        <h1>{judulReact}</h1>
+                        <hr/>
+                        <p>stt... lagi kerja serius {judulReact.toLocaleLowerCase()}</p>
+                    </React.Fragment>
+                )
+            }
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<MyComponent/>);
+    </script>
+    6 -->
+    <!-- <script type="text/babel">
+        class MyComponent extends React.Component {
+            render(){
+                let judulReact = `Belajar React`;
+                return(
+                    <React.Fragment>
+                        <h1>{judulReact}</h1>
+                        <hr/>
+                        <p>stt... lagi kerja serius {judulReact.toLocaleLowerCase}</p>
+                    </React.Fragment>
+                )
+            }
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<myComponent/>);
+    </script> -->
+    <!-- 5 -->
+    <!-- <script type="text/babel">
+        class JudulReact extends React.Component{
+            render(){
+                return <h1>Sedang Belajar React</h1>
+            }
+        }
+        const JudulJavaScript = () => <h1>Sedang Belajar JavaScript</h1>
+
+        const MyComponent = () => {
+            return(
+                    <div>
+                        <JudulReact/>
+                        <hr/>
+                        <JudulJavaScript/>
+                    </div>
+            )
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<myComponent/>);
+    </script> -->
+    <!-- 4 -->
+    <!-- <script type="text/babel">
+        class JudulReact extends React.Component{
+            render(){
+                return <h1>Sedang Belajar React</h1>
+            }
+        }
+        class JudulJavaScript extends React.Component{
+            render(){
+                return <h1>Sedang Belajar Javascript</h1>
+            }
+        }
+
+        function MyComponent() {
+            return(
+                    <div>
+                        <JudulReact/>
+                        <hr/>
+                        <JudulJavaScript/>
+                    </div>
+            )
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<myComponent/>);
+    </script> -->
+    <!-- 3 -->
+    <!-- <script type="text/babel">
+        class JudulReact extends React.Component{
+            render(){
+                return <h1>Sedang Belajar React</h1>
+            }
+        }
+        class JudulJavaScript extends React.Component{
+            render(){
+                return <h1>Sedang Belajar Javascript</h1>
+            }
+        }
+        class myComponent extends React.Component{
+            render(){
+                return (
+                    <div>
+                        <JudulReact/>
+                        <hr/>
+                        <JudulJavaScript/>
+                    </div>
+                )
+            }
+
+        }
+        ReactDOM.createRoot(document.getElementById('root')).render(<myComponent/>);
+    </script> -->
+    <!-- 2 -->
+    <!-- <script type="text/babel">
+        class JudulReact extends React.Component{
+            render(){
+                return <h1>Sedang Belajar React</h1>
+            }
+        }
+        class JudulJavaScript extends React.Component{
+            render(){
+                return <h1>Sedang Belajar Javascript</h1>
+            }
+        }
+        const myElement = (
+            <div>
+                <JudulReact/>
+                <hr/>
+                <JudulJavaScript/>
+            </div>
+        )
+
+        ReactDOM.createRoot(document.getElementById('root')).render(myElement);
+    </script> -->
+    <!-- 1 -->
+    <!-- <script type="text/babel">
+        class JudulReact extends React.Component{
+            render(){
+                return <h1>Sedang Belajar React</h1>
+            }
+        }
+        ReactDOM.createRoot(document.getElementById('root')).render(<JudulReact/>)
+    </script> -->
+
+</body>
+</html>

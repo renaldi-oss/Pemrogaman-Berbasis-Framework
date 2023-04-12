@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTS | Pemrogaman Berbasis Framework</title>
+    
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- REACT CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- BABEL CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.21.2/babel.js" 
+    integrity="sha512-H4d7o4neCJ2oxn87hZ28u2Xe+cMjt09Tb9TL9d4IckR0cda69w7sJpdkh6+oJveViuueEBlBxevEtpw3++Cz7w==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- sweet alert 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.css">
+    <script type="text/babel">
+        let mahasiswa = {
+            id : "01",
+            nama : "Reynaldi Fakhri Pratama",
+            jurusan : "Teknik Informatika",
+            hp : "081234567890",
+            alamat : "Jl. Semanggi Barat 21A",
+            kota : "Malang",
+            kecamatan : "Lowokwaru",
+            kelurahan : "Jatimulyo",
+            foto : "h1.png"
+        };
+
+        class Button extends React.Component {
+            constructor(props) {
+                super(props);
+                this.data = props.mhs;
+                console.log(this.data);
+                console.log(this.data.nama);
+            }
+            handleEdit = () => {
+                Swal.fire({
+                    title: 'Edit',
+                    text: 'Edit data mahasiswa',
+                    icon: 'info',
+                    confirmButtonText: 'OK'
+                });
+            };
+            handleInfo = () => {
+                Swal.fire({
+                    title: 'Info',
+                    html: `
+                        <p><strong>Nama</strong> : ${this.data.nama}</p>
+                        <p><strong>Jurusan</strong> : ${this.data.jurusan}</p>
+                        <p><strong>Kota</strong> : ${this.data.kota}</p>
+                        <p><strong>HP</strong> : ${this.data.hp}</p>
+                        <p><strong>Alamat</strong> : ${this.data.alamat}</p>
+                        <p><strong>Kecamatan</strong> : ${this.data.kecamatan}</p>
+                        <p><strong>Kelurahan</strong> : ${this.data.kelurahan}</p>
+                    `,
+                    icon: 'info',
+                    confirmButtonText: 'OK'
+                });
+            };
+            render() {
+                return (
+                    <button
+                        style={{
+                            backgroundColor: this.props.bg,
+                            color: this.props.color,
+                            padding: '10px 20px',
+                            borderRadius: '5px'
+                        }}
+                        onClick={this.props.text === "Edit" ? this.handleEdit : this.handleInfo}
+                    >
+                        {this.props.text}
+                    </button>
+                );
+            }
+        }
+
+        class Card extends React.Component{
+            render(){
+                const mhs = this.props.data;
+                console.log(mhs);
+                return(
+                    <figure style={{ display:'flex', maxWidth:'540px' }}>
+                        <img src={"./img/"+mahasiswa.foto} alt={mahasiswa.nama} style={{maxHeight: '200px', maxWidth: '200px', objectFit: 'cover'}}/>
+                        <figcaption style={{ flexGrow:'1',marginLeft:'20px' }}>
+                            <h5>Kartu Tanda Mahasiswa</h5>
+
+                            {Object.keys(mhs).map((key) => {
+                                if(key !== "foto"){
+                                    return (
+                                        <p key={key}>
+                                            <strong>{key}</strong> : {mhs[key]}
+                                        </p>
+                                    )
+                                }
+                            })}
+                            {/* {Object.entries(mhs).map((key,value) => {
+                                if(key !== "foto"){
+                                    return (
+                                        <p key={key}>
+                                            <strong>{key}</strong> : {value}
+                                        </p>
+                                    )
+                                }
+                            })} */}
+                        </figcaption>
+                    </figure>
+
+                )
+            }
+        }
+        class Mahasiswa extends React.Component{
+            Ayah(props) {
+                return (
+                    <div style={{ textAlign:'center' }}>
+                        <h1>{ props.name }</h1>
+                        <p>{props.hp}</p>
+                    </div>
+                )
+            }
+            render(){
+                return(
+                    <React.Fragment>
+                        <h1 style={{textAlign:"center"}}>UTS</h1>
+                        <hr/>
+                        <section style={{display:"flex"}}>
+                            <Card data={mahasiswa} key={mahasiswa.id}/>
+                            <hr/>
+                            <this.Ayah name="Mulyo Handoko" hp="081234567890"/>
+                        </section>
+                        <hr/>
+                        <section style={{display:"flex", justifyContent:"space-around"}}>
+                            <Button text="Edit" bg="green" color="white" mhs={mahasiswa}/>
+                            <Button text="Info" bg="cyan" color="black" mhs={mahasiswa}/>
+                        </section>
+                    </React.Fragment>
+                    
+                )
+            }
+        }
+        ReactDOM.createRoot(document.getElementById('root')).render(<Mahasiswa/>);
+    </script>
+</body>
+</html>
