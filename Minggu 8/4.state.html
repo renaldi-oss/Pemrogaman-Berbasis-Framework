@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Uncover</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- REACT CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- BABEL CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.21.2/babel.js" 
+    integrity="sha512-H4d7o4neCJ2oxn87hZ28u2Xe+cMjt09Tb9TL9d4IckR0cda69w7sJpdkh6+oJveViuueEBlBxevEtpw3++Cz7w==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script type="text/babel">
+        class MyApp extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    judul: "Belajar React"
+                }
+            }
+            handleButtonClick = () => {
+                this.setState({
+                    judul: this.state.judul === "Belajar React" ? "Belajar JavaScript" : "Belajar React"
+                });
+            }
+            render(){
+                console.log(`Render di proses... isi state judul: ${this.state.judul}`);
+                return(
+                    <div>
+                        <h1>{this.state.judul}</h1>
+                        <button onClick={this.handleButtonClick}>Click Me</button>
+                    </div>
+                );
+            }
+        }
+        ReactDOM.createRoot(document.getElementById('root')).render(<MyApp />);
+    </script>
+</body>
+</html>
