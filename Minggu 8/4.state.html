@@ -27,9 +27,18 @@
                 }
             }
             handleButtonClick = () => {
-                this.setState({
-                    judul: this.state.judul === "Belajar React" ? "Belajar JavaScript" : "Belajar React"
-                });
+                {/* this.setState({
+                    judul: this.state.judul !== "Belajar JavaScript" ? "Belajar JavaScript" : "Belajar React"
+                }); */}
+                if(this.state.judul !== "Belajar JavaScript"){
+                    this.setState({
+                        judul: "Belajar JavaScript"
+                    });
+                }else{
+                    this.setState({
+                        judul: "Belajar React"
+                    });
+                }
             }
             render(){
                 console.log(`Render di proses... isi state judul: ${this.state.judul}`);
